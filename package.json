@@ -13,7 +13,7 @@
     "frontendRefreshOnBackendChange": true,
     "reactHotLoader": false,
     "debugSQL": false,
-    "persistGraphQL": true,
+    "persistGraphQL": false,
     "apolloLogging": false
   },
   "engines": {
@@ -23,8 +23,8 @@
   "scripts": {
     "build": "babel-node --presets es2015 tools/webpack.run",
     "start": "node --harmony build/server",
-    "tests": "cross-env NODE_ENV=test PORT=7070 mocha-webpack --include babel-polyfill --webpack-config tools/webpack.config.js --full-trace --exit \"src/**/*.spec.js\"",
-    "tests:watch": "cross-env NODE_ENV=test PORT=7070 mocha-webpack --include babel-polyfill --webpack-config tools/webpack.config.js --full-trace --watch \"src/**/*.spec.js\"",
+    "tests": "cross-env NODE_ENV=test PORT=7070 mocha-webpack --include babel-polyfill --webpack-config tools/webpack.config.js --full-trace --exit \"src/!(mobile)/**/*.spec.js\"",
+    "tests:watch": "cross-env NODE_ENV=test PORT=7070 mocha-webpack --include babel-polyfill --webpack-config tools/webpack.config.js --full-trace --watch \"src/!(mobile)/**/*.spec.js\"",
     "test": "npm run tests && npm run lint",
     "lint": "eslint --fix --ext js --ext jsx src tests tools",
     "seed": "npm run migrate && knex seed:run",
@@ -72,7 +72,7 @@
     "minilog": "^3.1.0",
     "performance-now": "^2.1.0",
     "persistgraphql": "^0.3.1",
-    "prop-types": "^15.5.9",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-apollo": "^1.2.0",
     "react-dom": "^15.5.4",
@@ -116,6 +116,7 @@
     "eslint-config-airbnb": "^15.0.0",
     "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jest": "^20.0.3",
     "eslint-plugin-jsx-a11y": "^5.0.1",
     "eslint-plugin-mocha": "^4.9.0",
     "eslint-plugin-react": "^7.0.1",
