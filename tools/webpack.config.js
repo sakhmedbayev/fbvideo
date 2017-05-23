@@ -75,14 +75,17 @@ const baseConfig = {
       },
       {
         test: /\.(png|ico|jpg|xml)$/,
+        exclude: /(react-native|expo|@expo)/,
         use: 'url-loader?name=[hash].[ext]&limit=10000'
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        exclude: /(react-native|expo|@expo)/,
         use: 'url-loader?name=./assets/[hash].[ext]&limit=10000'
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        exclude: /(react-native|expo|@expo)/,
         use: 'file-loader?name=./assets/[hash].[ext]'
       },
     ]
@@ -197,7 +200,10 @@ const clientConfig = merge.smart(_.cloneDeep(baseConfig), {
 const dllConfig = merge.smart(_.cloneDeep(baseConfig), {
   name: 'dll',
   entry: {
-    vendor: _.keys(pkg.dependencies),
+    vendor: _.remove(
+      _.keys(pkg.dependencies),
+      key => ['react-native', 'expo'].indexOf(key) < 0
+    )
   },
   plugins: [
     new webpack.DllPlugin({
