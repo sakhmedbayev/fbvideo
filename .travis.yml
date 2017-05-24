@@ -5,7 +5,7 @@ os:
   - linux
 install:
   - npm install
-  - cd src/mobile && npm install
+  - cd src/mobile && npm install && cd -
 cache:
   directories:
     - node_modules
