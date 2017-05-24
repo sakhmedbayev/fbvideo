@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "../../.eslintrc"
+  ],
+  "env": {
+    "jest/globals": true
+  },
+  "plugins": ["jest"],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "../../tools/webpack.config.js"
+      }
+    }
+  }
+}

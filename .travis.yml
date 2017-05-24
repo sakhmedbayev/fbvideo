@@ -3,6 +3,9 @@ node_js:
   - "node"
 os:
   - linux
+install:
+  - npm install
+  - cd src/mobile && npm install
 cache:
   directories:
     - node_modules
