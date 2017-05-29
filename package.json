@@ -13,8 +13,9 @@
     "frontendRefreshOnBackendChange": true,
     "reactHotLoader": false,
     "debugSQL": false,
-    "persistGraphQL": true,
-    "apolloLogging": false
+    "persistGraphQL": false,
+    "apolloLogging": false,
+    "android": true
   },
   "engines": {
     "node": "6.6.0",

@@ -331,6 +331,16 @@ function buildDll() {
 function startWebpack() {
   startServer();
   startClient();
+  if (pkg.app.android) {
+    spawn('adb', ['reverse', 'tcp:8080', 'tcp:8080'], { stdio: [0, 1, 2] });
+    spawn('node', [
+      'node_modules/.bin/react-native-scripts',
+      'android'
+    ], {
+      cwd: 'src/mobile',
+      stdio: [0, 1, 2]
+    });
+  }
 }
 
 if (!__DEV__ || !pkg.app.webpackDll) {
