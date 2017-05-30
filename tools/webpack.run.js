@@ -341,6 +341,16 @@ function startWebpack() {
       stdio: [0, 1, 2]
     });
   }
+  if (pkg.app.ios) {
+    //spawn('adb', ['reverse', 'tcp:8080', 'tcp:8080'], { stdio: [0, 1, 2] });
+    spawn('node', [
+      'node_modules/.bin/react-native-scripts',
+      'ios'
+    ], {
+      cwd: 'src/mobile',
+      stdio: [0, 1, 2]
+    });
+  }
 }
 
 if (!__DEV__ || !pkg.app.webpackDll) {
